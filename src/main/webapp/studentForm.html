@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #f1f8e9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #37474f;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border: 1px solid #b0bec5;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .gender-group {
+            margin-bottom: 18px;
+        }
+
+        .gender-group label {
+            font-weight: normal;
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #388e3c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Student Registration</h2>
+        <form action="register" method="post">
+            <label for="name">Full Name</label>
+            <input type="text" name="name" id="name" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" name="email" id="email" required>
+
+            <label>Gender</label>
+            <div class="gender-group">
+                <input type="radio" name="gender" value="Male" id="male" required>
+                <label for="male">Male</label>
+
+                <input type="radio" name="gender" value="Female" id="female">
+                <label for="female">Female</label>
+            </div>
+
+            <label for="course">Course</label>
+            <input type="text" name="course" id="course" required>
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+</body>
+</html>
