@@ -1,0 +1,4 @@
+Contents of the file:
+Hello, this is line 1.
+This is line 2.
+End of file.
