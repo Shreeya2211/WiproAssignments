@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Spring framework XML configuration -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:oxm="http://www.springframework.org/schema/oxm"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           https://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/tx
+           https://www.springframework.org/schema/tx/spring-tx.xsd
+           http://www.springframework.org/schema/oxm
+           https://www.springframework.org/schema/oxm/spring-oxm.xsd
+           http://www.springframework.org/schema/aop
+           https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- Your bean definitions go here -->
+
+
+    <bean class="springprograms.SampleBean" id="mybean1" scope="singleton">
+        <property name="username" value="Kim Taeri"/>
+    </bean>
+
+    <bean class="springprograms.Student" id="mybean2" abstract="true">
+        <property name="sid" value="1000"/>
+        <property name="sname" value="Kim Tareri"/>
+    </bean>
+
+    <bean class="springprograms.Student_Course" id="mybean3" parent="mybean2">
+        <property name="courseid" value="10"/>
+        <property name="coursename" value="Java"/>
+    </bean>
+
+    <bean class="springprograms.Branch" id="bobj">
+        <property name="city" value="Bangalore"/>
+        <property name="state" value="Karnataka"/>
+    </bean>
+
+    <bean class="springprograms.Branch" id="mybranch">
+        <property name="city" value="Chennai"/>
+        <property name="state" value="Tamilnadu"/>
+    </bean>
+
+    <bean class="springprograms.Bank" id="mybank_1">
+        <property name="bankname" value="HDFC"/>
+        <property name="managername" value="Kanishka"/>
+        <property name="bobj" ref="mybranch"/>
+    </bean>
+
+    <bean class="springprograms.Bank" id="mybank_2">
+        <property name="bankname" value="AXIS"/>
+        <property name="managername" value="Abi"/>
+        <property name="bobj">
+            <bean class="springprograms.Branch">
+                <property name="city" value="Trichy"/>
+                <property name="state" value="Tamilnadu"/>
+            </bean>
+        </property>
+    </bean>
+
+    <!-- Supplier beans -->
+    <bean class="springprograms.Supplier" id="suppobj">
+        <property name="supplierid" value="10"/>
+        <property name="suppliername" value="Arista"/>
+    </bean>
+    <bean class="springprograms.Supplier" id="suppobj1">
+        <property name="supplierid" value="11"/>
+        <property name="suppliername" value="Dell"/>
+    </bean>
+    <bean class="springprograms.Supplier" id="suppobj2">
+        <property name="supplierid" value="12"/>
+        <property name="suppliername" value="HP"/>
+    </bean>
+
+    <!-- Vendor bean with collections -->
+    <bean class="springprograms.Vendor" id="veobj">
+        <property name="vendorid" value="200"/>
+        <property name="vendorname" value="Zebronics"/>
+        <property name="customername">
+            <list>
+                <value>ZOHO</value>
+                <value>Hexaware</value>
+                <value>CTS</value>
+                <value>TCS</value>
+                <value>APPLE</value>
+                <value>DELL</value>
+                <value>Mindtree</value>
+            </list>
+        </property>
+        <property name="branches">
+            <set>
+                <value>INDIA</value>
+                <value>US</value>
+                <value>Australia</value>
+                <value>Japan</value>
+                <value>UK</value>
+                <value>China</value>
+            </set>
+        </property>
+        <property name="itemsdata">
+            <map>
+                <entry key="10" value="Laptop"/>
+                <entry key="11" value="Inverter"/>
+                <entry key="12" value="Bluetooth"/>
+                <entry key="13" value="Harddisk"/>
+            </map>
+        </property>
+        <property name="slist">
+            <list>
+                <ref bean="suppobj1"/>
+                <ref bean="suppobj2"/>
+                <ref bean="suppobj"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Constructor Injection Example -->
+    <bean class="springprograms.Address" id="addrobj">
+        <constructor-arg name="city" value="Chennai"/>
+        <constructor-arg index="1" value="India"/>
+    </bean>
+
+    <bean class="springprograms.Employee_ConstructorInjection" id="myempsobj">
+        <constructor-arg name="eno" value="7000"/>
+        <constructor-arg value="Thananya"/>
+        <constructor-arg>
+            <ref bean="addrobj"/>
+        </constructor-arg>
+        <constructor-arg>
+            <list>
+                <value>NationalHighways Department</value>
+                <value>Urban Renewal</value>
+                <value>Cloud Computing</value>
+                <value>Image Processing</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg>
+            <map>
+                <entry key="10" value="OCP"/>
+                <entry key="80" value="OJP"/>
+                <entry key="40" value="REDHAT LINUX"/>
+                <entry key="30" value="CCNA"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- Component scan -->
+    <context:component-scan base-package="springprograms"/>
+
+    <!-- Property placeholder -->
+    <context:property-placeholder location="classpath:WIPROSettings.properties,mydbconnection.properties"/>
+
+    <!-- UserData bean with properties file placeholders -->
+    <bean class="springprograms.UserData" id="user_obj1">
+        <property name="username" value="Thananya"/>
+        <property name="companyname" value="${MyOrganization}"/>
+        <property name="address" value="${MyPlace}"/>
+        <property name="domain" value="${MyDomain}"/>
+    </bean>
+
+    <!-- Autowire examples -->
+    <bean class="springprograms.Bank" id="baobj_15" autowire="byName">
+        <property name="bankname" value="Axis"/>
+        <property name="managername" value="Kanishka"/>
+    </bean>
+
+    <bean id="carobj1" class="springprograms.Car">
+        <property name="carid" value="201"/>
+        <property name="carname" value="BMW"/>
+    </bean>
+
+    <bean id="personobj" class="springprograms.Person" autowire="byType">
+        <property name="personid" value="1001"/>
+        <property name="personname" value="Thananya"/>
+    </bean>
+
+    <!-- AOP Beans -->
+    <bean id="bankServiceobj" class="springprograms.BankServiceAOPDemo"/>
+    <bean id="loggingAspectobj" class="aopfiles.BankLoggingAspectDemo"/>
+
+    <aop:config>
+        <aop:aspect ref="loggingAspectobj">
+            <aop:pointcut id="bankMethods" expression="execution(* springprograms.BankServiceAOPDemo.*(..))"/>
+            <aop:before pointcut-ref="bankMethods" method="wiprologBefore"/>
+            <aop:after pointcut-ref="bankMethods" method="wiprologAfter"/>
+            <aop:after-returning pointcut-ref="bankMethods" method="wiprologAfterReturning" returning="result"/>
+            <aop:after-throwing pointcut-ref="bankMethods" method="wiprologAfterThrowing" throwing="ex"/>
+            <aop:around method="wiprologExecutionTime" pointcut-ref="bankMethods"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!-- Spring JDBC integration -->
+    <bean id="dataSourceobj" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${mydriver}"/>
+        <property name="url" value="${mydb}"/>
+        <property name="username" value="${myusername}"/>
+        <property name="password" value="${mypassword}"/>
+    </bean>
+
+    <bean id="jdbcTemplateobj" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSourceobj"/>
+    </bean>
+
+    <bean id="vehicleDao" class="daofiles.VehicleJDBCDAOImpl">
+        <property name="jdbcTemplate11" ref="jdbcTemplateobj"/>
+    </bean>
+
+</beans>

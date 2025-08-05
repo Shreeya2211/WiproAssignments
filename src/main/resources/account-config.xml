@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Load external property file -->
+    <context:property-placeholder location="classpath:accountinfo.properties"/>
+
+    <!-- Account1 bean -->
+    <bean id="acc" class="springmain.Account1">
+        <property name="number" value="${account.number}" />
+        <property name="holder" value="${account.holder}" />
+        <property name="balance" value="${account.balance}" />
+        <property name="type" value="${account.type}" />
+    </bean>
+</beans>

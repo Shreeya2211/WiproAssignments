@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Product bean -->
+    <bean id="product" class="springex9.Product">
+        <constructor-arg value="P001"/>
+        <constructor-arg value="Mobile Phone"/>
+        <constructor-arg value="25000"/>
+    </bean>
+
+    <!-- Purchase bean with constructor autowiring -->
+    <bean id="purchase" class="springex9.Purchase" autowire="constructor">
+        <constructor-arg value="PU123"/>
+        <constructor-arg value="2025-08-04"/>
+    </bean>
+
+</beans>
