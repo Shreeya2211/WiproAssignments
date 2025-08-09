@@ -1,0 +1,11 @@
+package springbootassi5;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Springbootassi5Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Springbootassi5Application.class, args);
+    }
+}
