@@ -1,0 +1,38 @@
+package com.myapp.consumer;
+
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class RideService
+{
+
+    private final RideRepository rideRepository;
+
+    public RideService(RideRepository rideRepository)
+    {
+        this.rideRepository = rideRepository;
+    }
+
+    public Ride saveRide(Ride ride)
+    {
+        return rideRepository.save(ride);
+    }
+
+    public Optional<Ride> getRideById(Long id)
+    {
+        return rideRepository.findById(id);
+    }
+
+    public List<Ride> getAllRides()
+    {
+        return rideRepository.findAll();
+    }
+
+    public void deleteRide(Long id)
+    {
+        rideRepository.deleteById(id);
+    }
+}
