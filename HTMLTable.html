@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #e3f2fd, #fce4ec);
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            background-color: #ffffffaa;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            width: fit-content;
+            margin: auto;
+        }
+        table {
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 12px rgba(0,0,0,0.15);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #e0f7fa;
+            transition: background-color 0.3s;
+        }
+        tfoot td {
+            font-weight: bold;
+            background-color: #ffe0b2;
+        }
+        /* Status coloring */
+        td.status {
+            font-weight: bold;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .Shipped {
+            background-color: #bbdefb;
+            color: #0d47a1;
+        }
+        .Processing {
+            background-color: #fff9c4;
+            color: #f57f17;
+        }
+        .Delivered {
+            background-color: #c8e6c9;
+            color: #1b5e20;
+        }
+        .Cancelled {
+            background-color: #ffcdd2;
+            color: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Purchase Orders</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Order #</th>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Items</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Line Total</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>2001</td>
+            <td>2025-07-29</td>
+            <td>Asha Sharma</td>
+            <td>Basmati Rice (5 kg)</td>
+            <td>1</td>
+            <td>$24.00</td>
+            <td>$24.00</td>
+            <td class="status Shipped">Shipped</td>
+        </tr>
+        <tr>
+            <td>2002</td>
+            <td>2025-07-30</td>
+            <td>Raman &amp; Co.</td>
+            <td>Brown Bread</td>
+            <td>3</td>
+            <td>$2.25</td>
+            <td>$6.75</td>
+            <td class="status Processing">Processing</td>
+        </tr>
+        <tr>
+            <td>2003</td>
+            <td>2025-08-01</td>
+            <td>Priya Patel</td>
+            <td>Assorted Snacks Box</td>
+            <td>1</td>
+            <td>$18.50</td>
+            <td>$18.50</td>
+            <td class="status Delivered">Delivered</td>
+        </tr>
+        <tr>
+            <td>2004</td>
+            <td>2025-08-02</td>
+            <td>Vijay Enterprises</td>
+            <td>Sugar (2 kg)</td>
+            <td>2</td>
+            <td>$1.80</td>
+            <td>$3.60</td>
+            <td class="status Cancelled">Cancelled</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="5"></td>
+            <td>Grand Total</td>
+            <td>$59.85</td>
+            <td>$59.85</td>
+        </tr>
+    </tfoot>
+</table>
+
+</body>
+</html>

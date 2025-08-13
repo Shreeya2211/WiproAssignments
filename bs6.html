@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Homes</title>
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #dcdcdc, #a9a9a9);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        /* Navbar styling */
+        .navbar {
+            background: linear-gradient(90deg, #555, #333);
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+        }
+        /* Header text */
+        h1 {
+            color: #333;
+        }
+        .lead {
+            color: #444;
+        }
+        /* Card styling */
+        .card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #f5f5f5;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .card-title {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        /* Buttons hover effects */
+        .btn-primary:hover {
+            background-color: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 0, 255, 0.4);
+        }
+        .btn-success:hover {
+            background-color: #1b7e31;
+            box-shadow: 0 4px 8px rgba(0, 128, 0, 0.4);
+        }
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #555, #333);
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Dream Homes</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Properties</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container text-center my-5">
+    <h1 class="display-4 fw-bold">Find Your Dream Home</h1>
+    <p class="lead">Best properties at the best prices</p>
+</div>
+
+
+<div class="container mb-5">
+    <div class="row g-4">
+      
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="file:///D:/HTML/images/famhouse.jpg" class="card-img-top" alt="Beautiful Family House">
+                <div class="card-body">
+                    <h5 class="card-title">Beautiful Family House</h5>
+                    <p class="card-text">A spacious family house with a large garden and modern amenities.</p>
+                    <a href="#" class="btn btn-primary btn-sm me-2">View Details</a>
+                    <a href="#" class="btn btn-success btn-sm">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+       
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="file:///D:/HTML/images/modernapartment.jpg" class="card-img-top" alt="Modern Apartment">
+                <div class="card-body">
+                    <h5 class="card-title">Modern Apartment</h5>
+                    <p class="card-text">A stylish apartment in the city center with a sleek design.</p>
+                    <a href="#" class="btn btn-primary btn-sm me-2">View Details</a>
+                    <a href="#" class="btn btn-success btn-sm">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+     
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img src="file:///D:/HTML/images/luxuryvilla.jpg" class="card-img-top" alt="Luxury Villa">
+                <div class="card-body">
+                    <h5 class="card-title">Luxury Villa</h5>
+                    <p class="card-text">An elegant villa with a spacious interior and a beautiful view.</p>
+                    <a href="#" class="btn btn-primary btn-sm me-2">View Details</a>
+                    <a href="#" class="btn btn-success btn-sm">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="text-white text-center py-3">
+    © 2025 Dream Homes. All rights reserved.
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
