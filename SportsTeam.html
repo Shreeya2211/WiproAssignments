@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🏆 Sports Team Player Details</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1f4037, #99f2c8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+        }
+        h1 {
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
+        }
+        .player-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            margin: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+        .player-card:hover {
+            transform: scale(1.05);
+        }
+        .player-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffe57f;
+        }
+        .player-sport {
+            font-size: 16px;
+            color: #ffebee;
+        }
+        .stats {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(0,0,0,0.2);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🏏 Sports Team Player Details</h1>
+
+<div class="container" id="playerContainer"></div>
+
+<script>
+    
+    const player1 = {
+        name: "Virat Kohli",
+        age: 36,
+        sport: "Cricket",
+        stats: {
+            matches: 500,
+            runs: 25000,
+            average: 57.2
+        }
+    };
+
+    const player2 = {
+        name: "Lionel Messi",
+        age: 38,
+        sport: "Football",
+        stats: {
+            matches: 800,
+            goals: 720,
+            assists: 300
+        }
+    };
+
+    const player3 = {
+        name: "Shubman Gill",
+        age: 25,
+        sport: "Cricket",
+        stats: {
+            matches: 120,
+            runs: 5500,
+            average: 48.7
+        }
+    };
+
+    const player4 = {
+        name: "Gukesh Dommaraju",
+        age: 18,
+        sport: "Chess",
+        stats: {
+            matches: 200,
+            wins: 150,
+            rating: 2763
+        }
+    };
+
+    
+    const players = [player1, player2, player3, player4];
+
+    
+    function displayPlayers() {
+        const container = document.getElementById("playerContainer");
+        container.innerHTML = "";
+
+        for (const player of players) {
+            const { name, sport, stats: { matches } } = player;
+            
+            let statDetails = "";
+            if (sport === "Cricket") {
+                const { runs, average } = player.stats;
+                statDetails = `Matches: ${matches} | Runs: ${runs} | Batting Average: ${average}`;
+            } 
+            else if (sport === "Football") {
+                const { goals, assists } = player.stats;
+                statDetails = `Matches: ${matches} | Goals: ${goals} | Assists: ${assists}`;
+            }
+            else if (sport === "Chess") {
+                const { wins, rating } = player.stats;
+                statDetails = `Matches: ${matches} | Wins: ${wins} | FIDE Rating: ${rating}`;
+            }
+
+            const card = document.createElement("div");
+            card.className = "player-card";
+            card.innerHTML = `
+                <div class="player-name">Player ${name}</div>
+                <div class="player-sport">Plays ${sport}</div>
+                <div class="stats">${statDetails}</div>
+            `;
+            container.appendChild(card);
+        }
+    }
+
+    displayPlayers();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Income Tax Calculator - Callback Version</title>
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(120deg, #74ebd5, #ACB6E5);
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        background: white;
+        padding: 20px 30px;
+        border-radius: 15px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+    h2 {
+        text-align: center;
+        color: #444;
+    }
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+    button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 12px;
+        background: #4A90E2;
+        border: none;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    button:hover {
+        background: #357ABD;
+    }
+    .result, .records {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        background: #f4f4f4;
+        border-left: 5px solid #4A90E2;
+    }
+    .records h4 {
+        margin: 0 0 10px;
+    }
+    ul {
+        padding-left: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>💰 Income Tax Calculator</h2>
+
+    <label for="name">Full Name</label>
+    <input type="text" id="name" placeholder="Enter your full name">
+
+    <label for="pan">PAN Number</label>
+    <input type="text" id="pan" placeholder="ABCDE1234F">
+
+    <label for="income">Annual Income (₹)</label>
+    <input type="number" id="income" placeholder="Enter income">
+
+    <button onclick="processTax()">Calculate Tax</button>
+
+    <div class="result" id="result"></div>
+
+    <div class="records">
+        <h4>📜 Saved Tax Records</h4>
+        <ul id="recordsList"></ul>
+    </div>
+</div>
+
+<script>
+    let taxRecords = [];
+
+    function calculateTax(name, pan, income, callback) {
+        let tax = 0;
+        if (income <= 250000) {
+            tax = 0;
+        } else if (income <= 500000) {
+            tax = (income - 250000) * 0.05;
+        } else if (income <= 1000000) {
+            tax = 12500 + (income - 500000) * 0.2;
+        } else {
+            tax = 112500 + (income - 1000000) * 0.3;
+        }
+        callback(name, pan, income, tax);
+    }
+
+    function logToConsole(name, pan, income, tax) {
+        console.log(`Name: ${name}, PAN: ${pan}, Income: ₹${income}, Tax: ₹${tax}`);
+    }
+
+    function displayOnPage(name, pan, income, tax) {
+        document.getElementById("result").innerHTML = `
+            <strong>Name:</strong> ${name} <br>
+            <strong>PAN:</strong> ${pan} <br>
+            <strong>Income:</strong> ₹${income.toLocaleString()} <br>
+            <strong>Tax:</strong> ₹${tax.toLocaleString()}
+        `;
+    }
+
+    function saveToRecords(name, pan, income, tax) {
+        taxRecords.push({ name, pan, income, tax });
+        updateRecordsList();
+    }
+
+    function updateRecordsList() {
+        let list = document.getElementById("recordsList");
+        list.innerHTML = "";
+        taxRecords.forEach((rec, index) => {
+            let li = document.createElement("li");
+            li.textContent = `${index+1}. ${rec.name} (${rec.pan}) - Income: ₹${rec.income.toLocaleString()}, Tax: ₹${rec.tax.toLocaleString()}`;
+            list.appendChild(li);
+        });
+    }
+
+    function processTax() {
+        let name = document.getElementById("name").value.trim();
+        let pan = document.getElementById("pan").value.trim();
+        let income = parseFloat(document.getElementById("income").value);
+
+        if (!name || !pan || isNaN(income)) {
+            alert("Please enter all details correctly.");
+            return;
+        }
+
+        calculateTax(name, pan, income, function(n, p, i, t) {
+            logToConsole(n, p, i, t);
+            displayOnPage(n, p, i, t);
+            saveToRecords(n, p, i, t);
+        });
+    }
+</script>
+
+</body>
+</html>

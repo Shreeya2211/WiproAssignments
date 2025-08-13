@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🏝 Tour Booking Form</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            color: #fff;
+            text-shadow: 0px 0px 5px #ff6f61;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+            color: #fff;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        button {
+            background: linear-gradient(90deg, #ff6f61, #de6262);
+            border: none;
+            padding: 10px 15px;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: transform 0.2s, background 0.3s;
+        }
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #de6262, #ff6f61);
+        }
+        .summary {
+            margin-top: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 12px;
+            border-radius: 8px;
+            color: #fff;
+            text-align: left;
+            font-size: 14px;
+            white-space: pre-line;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>🏝 Tour Booking Form</h2>
+    
+    <label>Full Name:</label>
+    <input type="text" id="fullName" placeholder="Enter your name">
+
+    <label>Email:</label>
+    <input type="email" id="email" placeholder="Enter your email">
+
+    <label>Destination:</label>
+    <select id="destination">
+        <option value="Ooty">Ooty</option>
+        <option value="Goa">Goa</option>
+        <option value="Manali">Manali</option>
+    </select>
+
+    <label>Number of Days:</label>
+    <input type="number" id="days" min="1" placeholder="Enter days">
+
+    <label>Number of Travelers:</label>
+    <input type="number" id="travelers" min="1" placeholder="Enter travelers">
+
+    <button onclick="bookTour()">Book Now</button>
+
+    <div class="summary" id="summary"></div>
+</div>
+
+<script>
+    function bookTour() {
+        let name = document.getElementById("fullName").value;
+        let email = document.getElementById("email").value;
+        let destination = document.getElementById("destination").value;
+        let days = parseInt(document.getElementById("days").value);
+        let travelers = parseInt(document.getElementById("travelers").value);
+
+        let pricePerDay;
+        if (destination === "Ooty") pricePerDay = 2000;
+        else if (destination === "Goa") pricePerDay = 3000;
+        else if (destination === "Manali") pricePerDay = 4000;
+
+        let totalPrice = days * travelers * pricePerDay;
+
+        document.getElementById("summary").innerText =
+            `Name: ${name}
+Email: ${email}
+Destination: ${destination}
+Days: ${days}
+Travelers: ${travelers}
+Total Price: ₹${totalPrice}`;
+    }
+</script>
+
+</body>
+</html>

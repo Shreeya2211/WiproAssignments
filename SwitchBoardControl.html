@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🏠 Switchboard Control</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #2b5876, #4e4376);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+        }
+        .switch-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .switch-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(6px);
+            border-radius: 12px;
+            padding: 15px;
+            width: 200px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+            transition: transform 0.3s;
+        }
+        .switch-card:hover {
+            transform: scale(1.05);
+        }
+        .on {
+            color: #76ff03;
+            font-weight: bold;
+        }
+        .off {
+            color: #ff1744;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 20px;
+            font-style: italic;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>💡 Switchboard Control Simulation</h1>
+<div class="switch-container" id="switchContainer"></div>
+<div class="footer" id="footer"></div>
+
+<script>
+  
+    const buildingName = "MoonLight Apartments";
+
+    
+    let status = "OFF";
+
+   
+    const devices = ["Light", "Fan", "AC"];
+
+    
+    var i;
+    const container = document.getElementById("switchContainer");
+
+    for (i = 0; i < devices.length; i++) {
+        
+        status = (status === "OFF") ? "ON" : "OFF";
+
+        
+        const card = document.createElement("div");
+        card.className = "switch-card";
+        card.innerHTML = `
+            <h3>Switch ${i + 1}</h3>
+            <p>${devices[i]} is 
+               <span class="${status.toLowerCase()}">${status}</span>
+            </p>
+        `;
+        container.appendChild(card);
+
+        console.log(`Checking Switch ${i + 1}: ${devices[i]} is ${status}`);
+    }
+
+   
+    document.getElementById("footer").textContent = 
+        `All switches checked for ${buildingName}. Outside loop: var counter is ${i}`;
+
+   
+    try {
+        buildingName = "Moonlight Residency"; // This will cause an error
+    } catch (error) {
+        console.error("Error when trying to change building name:", error.message);
+    }
+</script>
+
+</body>
+</html>

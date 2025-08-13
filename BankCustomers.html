@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank Customers Manager</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            display: inline-block;
+            text-align: left;
+            max-width: 500px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-shadow: 1px 1px 2px #fff;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #ff7e5f;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #eb5757;
+        }
+        pre {
+            background: rgba(0,0,0,0.8);
+            color: #00ffb3;
+            padding: 10px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: monospace;
+        }
+    </style>
+    <script>
+        function manageCustomers() {
+            let n = parseInt(prompt("How many customers to register?"));
+            if (isNaN(n) || n <= 0) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            let customers = [];
+            for (let i = 0; i < n; i++) {
+                let name = prompt(`Enter name for customer ${i + 1}:`);
+                customers.push(name.trim());
+            }
+
+            let output = "";
+
+            output += "Original Customers: " + customers.join(", ") + "\n\n";
+
+            output += "Customers using for...of:\n";
+            for (let cust of customers) {
+                output += cust + "\n";
+            }
+
+            output += "\nCustomer IDs using for...in:\n";
+            for (let id in customers) {
+                output += id + "\n";
+            }
+
+            customers.push("Anita");
+            output += "\nAfter push('shreya'): " + customers.join(", ") + "\n";
+
+            customers.pop();
+            output += "After pop(): " + customers.join(", ") + "\n";
+
+            customers.splice(1, 0, "Varshini");
+            output += "After insert 'Varshini' at position 1: " + customers.join(", ") + "\n";
+
+            customers.splice(2, 1);
+            output += "After delete at position 2: " + customers.join(", ") + "\n";
+
+            output += "\nFinal Customers: " + customers.join(", ");
+
+            document.getElementById("result").innerText = output;
+        }
+    </script>
+</head>
+<body>
+    <h1>🏦 Bank Customers Manager</h1>
+    <div class="container">
+        <button onclick="manageCustomers()">Start Customer Management</button>
+        <pre id="result"></pre>
+    </div>
+</body>
+</html>

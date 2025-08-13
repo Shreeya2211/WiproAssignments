@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Equality & Inequality Checker</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            text-align: left;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #28a745;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #218838;
+        }
+        pre {
+            text-align: left;
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function checkEquality() {
+            let val1 = prompt("Enter the first value:");
+            let val2 = prompt("Enter the second value:");
+
+            
+            let numVal1 = Number(val1);
+            let numVal2 = Number(val2);
+
+            let output = "";
+
+            output += `First Value: ${val1} (${typeof val1})\n`;
+            output += `Second Value: ${val2} (${typeof val2})\n\n`;
+
+         
+            output += `Using == : ${val1 == val2} → Equality ignores type\n`;
+
+            
+            output += `Using === : ${val1 === val2} → Strict equality checks type too\n`;
+
+            output += `Using != : ${val1 != val2} → Values considered equal if types ignored\n`;
+
+           
+            output += `Using !== : ${val1 !== val2} → Strict inequality because types differ\n\n`;
+
+            
+            output += `After Number conversion:\n`;
+            output += `First Value: ${numVal1} (${typeof numVal1})\n`;
+            output += `Second Value: ${numVal2} (${typeof numVal2})\n`;
+            output += `Using === after conversion: ${numVal1 === numVal2}\n`;
+
+            document.getElementById("result").innerText = output;
+        }
+    </script>
+</head>
+<body>
+    <h1>⚖️ Equality & Inequality Checker</h1>
+    <div class="container">
+        <button onclick="checkEquality()">Check Equality</button>
+        <pre id="result"></pre>
+    </div>
+</body>
+</html>

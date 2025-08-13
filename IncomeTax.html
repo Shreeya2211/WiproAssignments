@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Income Tax Calculator</title>
+    <style>
+        body {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Income_Tax_Office.JPG/640px-Income_Tax_Office.JPG');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 40px;
+            text-align: left;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            padding: 5px;
+            width: 100%;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #28a745;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .output {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            white-space: pre-line;
+        }
+    </style>
+    <script>
+        function calculateTax() {
+            let name = document.getElementById("name").value.trim();
+            let pan = document.getElementById("pan").value.trim().toUpperCase();
+            let dob = document.getElementById("dob").value;
+            let income = parseFloat(document.getElementById("income").value);
+
+           
+            if (!name) {
+                alert("Please enter your full name.");
+                return;
+            }
+            if (pan.length !== 10 || pan !== pan.toUpperCase()) {
+                alert("PAN must be exactly 10 characters and uppercase.");
+                return;
+            }
+            if (!dob) {
+                alert("Please enter your Date of Birth.");
+                return;
+            }
+            if (isNaN(income) || income < 0) {
+                alert("Please enter a valid annual income.");
+                return;
+            }
+
+          
+            let birthDate = new Date(dob);
+            let today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            let monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+           
+            let tax = 0;
+            if (income <= 250000) {
+                tax = 0;
+            } else if (income <= 500000) {
+                tax = (income - 250000) * 0.05;
+            } else if (income <= 1000000) {
+                tax = (250000 * 0.05) + (income - 500000) * 0.20;
+            } else {
+                tax = (250000 * 0.05) + (500000 * 0.20) + (income - 1000000) * 0.30;
+            }
+
+            tax = Math.round(tax); 
+
+           
+            document.getElementById("result").innerText =
+                "Name: " + name.toUpperCase() + "\n" +
+                "PAN: " + pan + "\n" +
+                "Age: " + age + " years\n" +
+                "Annual Income: ₹" + income + "\n" +
+                "Calculated Tax: ₹" + tax;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>💼 Income Tax Calculator</h1>
+        <label>Full Name:</label>
+        <input type="text" id="name">
+
+        <label>PAN Number:</label>
+        <input type="text" id="pan" maxlength="10">
+
+        <label>Date of Birth:</label>
+        <input type="date" id="dob">
+
+        <label>Annual Income (₹):</label>
+        <input type="number" id="income">
+
+        <button onclick="calculateTax()">Calculate Tax</button>
+
+        <div class="output" id="result"></div>
+    </div>
+</body>
+</html>

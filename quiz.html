@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Telugu Movie Quiz</title>
+    <style>
+        body {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/4f/Clapboard.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            height: 100vh;
+        }
+        h1 {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function startQuiz() {
+            alert("🎬 Welcome to the Telugu Movie Quiz!");
+
+            let name = prompt("What's your name?");
+            if (!name) {
+                name = "Player";
+            }
+
+            let ready = confirm("Hi " + name + "! Are you ready for the quiz?");
+            
+            if (ready) {
+                let answer = prompt(
+                    "Question: Who directed the blockbuster Telugu movie 'Baahubali'?\n" +
+                    "A) Sukumar\n" +
+                    "B) S.S. Rajamouli\n" +
+                    "C) Trivikram Srinivas\n" +
+                    "D) Puri Jagannadh\n" +
+                    "Enter A, B, C, or D:"
+                );
+
+                if (answer && answer.toUpperCase() === "B") {
+                    alert("Correct! 🎉 Well done, " + name + "!");
+                } else {
+                    alert("Oops! ❌ The correct answer is B) S.S. Rajamouli.");
+                }
+            } else {
+                alert("Okay, maybe next time! Goodbye " + name + "!");
+            }
+        }
+    </script>
+</head>
+<body onload="startQuiz()">
+    <h1>🎥 Telugu Movie Quiz 🎯</h1>
+</body>
+</html>
