@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Share Market Portfolio Tracker</title>
+</head>
+<body>
+    <h2>JavaScript Closure - Share Market Portfolio Tracker</h2>
+    <script>
+        function createPortfolio() {
+            let portfolio = [];
+
+            function buyShare(company, quantity, price) {
+                portfolio.push({ company, quantity, price });
+                console.log(`Bought ${quantity} shares of ${company} at ₹${price} each.`);
+            }
+
+            function sellShare(company, quantity) {
+                let share = portfolio.find(s => s.company === company);
+                if (share) {
+                    if (quantity <= share.quantity) {
+                        share.quantity -= quantity;
+                        console.log(`Sold ${quantity} shares of ${company}.`);
+                        if (share.quantity === 0) {
+                            portfolio = portfolio.filter(s => s.company !== company);
+                        }
+                    } else {
+                        console.log(`Not enough shares of ${company} to sell.`);
+                    }
+                } else {
+                    console.log(`${company} not found in portfolio.`);
+                }
+            }
+
+            function totalValue() {
+                let total = portfolio.reduce((sum, share) => sum + (share.quantity * share.price), 0);
+                console.log(`Portfolio Value: ₹${total}`);
+            }
+
+            return {
+                buyShare,
+                sellShare,
+                totalValue
+            };
+        }
+
+        const myPortfolio = createPortfolio();
+
+        myPortfolio.buyShare("TCS", 10, 3500);
+        myPortfolio.buyShare("Infosys", 5, 1500);
+        myPortfolio.sellShare("TCS", 3);
+        myPortfolio.totalValue();
+    </script>
+</body>
+</html>
