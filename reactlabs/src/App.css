@@ -1,0 +1,5 @@
+.container {
+  text-align: left;   /* instead of center */
+  margin-left: 20px;  /* add some spacing from the edge */
+}
+
